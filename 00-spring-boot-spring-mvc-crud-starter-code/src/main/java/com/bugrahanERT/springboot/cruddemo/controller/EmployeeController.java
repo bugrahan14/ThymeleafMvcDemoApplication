@@ -5,10 +5,7 @@ import com.bugrahanERT.springboot.cruddemo.entity.Employee;
 import com.bugrahanERT.springboot.cruddemo.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,6 +45,20 @@ public class EmployeeController {
 
     }
 
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("employeeId") int theId , Model theModel){
+
+        // GET THE EMPLOYEE FROM THE SERVİCE
+        Employee theEmployee = employeeService.findById(theId);
+
+        // SET EMPLOYEE İNT THE MODEL TO PROPOPULETE THE FORM
+        theModel.addAttribute("employee" , theEmployee);
+
+        // SEND OVER TO OUR FORM
+        return "employees/employee-form";
+    }
+
     @PostMapping("/save")
     public String saveEmployee(@ModelAttribute ("employee") Employee theEmployee){
 
@@ -55,6 +66,14 @@ public class EmployeeController {
         employeeService.save(theEmployee);
 
         // UAE A REDİRECT TO PREVENT DUPLİCATE SUBMMSSİONS
+        return "redirect:/employees/list";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("employeeId") int theId){
+
+        employeeService.deleteById(theId);
+
         return "redirect:/employees/list";
     }
 }
