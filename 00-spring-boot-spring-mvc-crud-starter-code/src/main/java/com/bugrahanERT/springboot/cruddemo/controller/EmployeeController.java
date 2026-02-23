@@ -45,6 +45,16 @@ public class EmployeeController {
 
     }
 
+    @PostMapping("/save")
+    public String saveEmployee(@ModelAttribute ("employee") Employee theEmployee){
+
+        // SAVE THE EMPLOYEE
+        employeeService.save(theEmployee);
+
+        // UAE A REDİRECT TO PREVENT DUPLİCATE SUBMMSSİONS
+        return "redirect:/employees/list";
+    }
+
 
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("employeeId") int theId , Model theModel){
@@ -59,15 +69,6 @@ public class EmployeeController {
         return "employees/employee-form";
     }
 
-    @PostMapping("/save")
-    public String saveEmployee(@ModelAttribute ("employee") Employee theEmployee){
-
-        // SAVE THE EMPLOYEE
-        employeeService.save(theEmployee);
-
-        // UAE A REDİRECT TO PREVENT DUPLİCATE SUBMMSSİONS
-        return "redirect:/employees/list";
-    }
 
     @GetMapping("/delete")
     public String delete(@RequestParam("employeeId") int theId){
