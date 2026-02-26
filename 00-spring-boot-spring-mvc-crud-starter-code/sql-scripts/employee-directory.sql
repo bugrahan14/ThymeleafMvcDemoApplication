@@ -15,14 +15,4 @@ CREATE TABLE `employee` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
---
--- Data for table `employee`
---
-
-INSERT INTO `employee` VALUES 
-	(1,'Leslie','Andrews','leslie@BugraERT.com'),
-	(2,'Emma','Baumgarten','emma@BugraERT.com'),
-	(3,'Avani','Gupta','avani@BugraERT.com'),
-	(4,'Yuri','Petrov','yuri@BugraERT.com'),
-	(5,'Juan','Vega','juan@BugraERT.com');
 
